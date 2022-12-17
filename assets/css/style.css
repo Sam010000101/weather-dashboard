@@ -1,20 +1,49 @@
 header{
 background-image: linear-gradient(90deg, #00d4ff 0%, #090979 35%, #020024 100%);
+margin-bottom: 0.5rem;
 }
 
 #citySearch {
     flex-direction: column;
 }
 
+.input-group-append {
+    margin-left: 0;
+}
+
+#search-input {
+    height: 3rem;
+    border: 2px solid grey;
+    border-radius: 0.3rem;
+    padding-left: 10px;
+}
+
+.search-button {
+    border-radius: 0.3rem !important;
+    margin-top: 1rem !important;
+    margin-bottom: 1rem !important;
+}
+
+.form-group {
+    margin-bottom: 0;
+}
+
+#history {
+    border-top: 2px solid grey;
+    margin-right: -15px;
+    margin-left: -15px;
+    margin-bottom: 10px;
+}
+
 #cityData {
     border: 2px solid black;
-    margin-top: 0.5rem!important;
+    margin-top: 0.5rem;
     align-self: flex-start;
 }
 
 .btn {
     margin-top: 0.75rem;
-    margin-bottom: 0.75rem;
+    margin-bottom: 0.5rem;
 }
 
 #form-group-full-width {
