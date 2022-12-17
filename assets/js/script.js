@@ -7,7 +7,7 @@ var todaysDate = moment();
 var todayEl = $("#today");
 
 //Variable that will create a "h2" element with today's date using moment.js
-var cityTitleEl = $("<h2>"+ "City " + "(" + todaysDate.format("D/MM/YYYY") + ") " + "</h2>");
+var cityTitleEl = $("<h2>"+ "<strong>" + "City " + "(" + todaysDate.format("D/MM/YYYY") + ") " + "</strong>" + "</h2>");
 
 //Append h2 element to id #today
 todayEl.append(cityTitleEl);
