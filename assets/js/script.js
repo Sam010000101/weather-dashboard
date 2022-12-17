@@ -1,14 +1,14 @@
-// console.log("Hello");
+//Variable containing today's date using moment.js
+var todaysDate = moment();
 
-//Create a variable to get the id #today
-var todayDate = $("#today");
+// console.log(todaysDate);
 
-// console.log(todayDate);
+//Variable to get the id #today
+var todayEl = $("#today");
 
-//Create a variable that will create a "h2" element
-var cityTitleEl = $("<h2>"+ "Today's Date" + "</h2>");
-
+//Variable that will create a "h2" element with today's date using moment.js
+var cityTitleEl = $("<h2>"+ "City " + "(" + todaysDate.format("D/MM/YYYY") + ") " + "</h2>");
 
 //Append h2 element to id #today
+todayEl.append(cityTitleEl);
 
-todayDate.append(cityTitleEl);
