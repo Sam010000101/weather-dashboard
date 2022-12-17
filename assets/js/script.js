@@ -24,7 +24,11 @@ var cityWindSpeed = $("<h5>" + "Wind: " + "</h5>");
 //Append cityWindSpeed var to id #today
 todayEl.append(cityWindSpeed);
 
+//Variable to create a "h5" element that will hold the city humidity
+var cityHumidity = $("<h5>" + "Humidity: " + "</h5>");
 
-// var cityHumidity = "Humidity:";
+//Append cityHumidity var to id #today
+todayEl.append(cityHumidity);
+
 
 console.log(cityTemp);
