@@ -13,13 +13,18 @@ var cityTitleEl = $("<h2>"+ "City " + "(" + todaysDate.format("D/MM/YYYY") + ") 
 todayEl.append(cityTitleEl);
 
 //Variable to create a "h5" element that will hold the city temperature
-var cityTemp = $("<h5>" + "Temp:" + "</h5>");
+var cityTemp = $("<h5>" + "Temp: " + "</h5>");
 
 //Append cityTemp var to id #today
 todayEl.append(cityTemp);
 
+//Variable to create a "h5" element that will hold the city wind speed
+var cityWindSpeed = $("<h5>" + "Wind: " + "</h5>");
 
-// var cityWindSpeed = "Wind:";
+//Append cityWindSpeed var to id #today
+todayEl.append(cityWindSpeed);
+
+
 // var cityHumidity = "Humidity:";
 
 console.log(cityTemp);
