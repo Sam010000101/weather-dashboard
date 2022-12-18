@@ -30,7 +30,8 @@
               <input class="form-input weather-search" type="text" id="search-input" placeholder="London"
                 aria-labelledby="form-heading" aria-controls="today forecast" />
               <div class="input-group-append">
-                <button type="submit" class="btn search-button btn btn-primary btn-lg btn-block" id="search-button" aria-label="submit search">
+                <button type="submit" class="btn search-button btn btn-primary btn-lg btn-block" id="search-button"
+                  aria-label="submit search">
                   Search
                 </button>
                 <hr class="hr weather-hr" />
@@ -64,7 +65,18 @@
 
       <div class="col-lg-9 pb-3" id="weatherData">
         <section id="today" class="mt-3" role="region" aria-live="polite"></section>
-        <section id="forecast" class="row mt-3" role="region" aria-live="polite"><h4><strong>5-Day Forecast:</strong></h4></section>
+        <section id="forecast" class="row mt-3" role="region" aria-live="polite">
+          <h4><strong>5-Day Forecast:</strong></h4>
+        </section>
+        <div class="container">
+          <div class="row">
+            <div class="col bg-dark">col 1</div>
+            <div class="col">col 2</div>
+            <div class="col">col 3</div>
+            <div class="col">col 4</div>
+            <div class="col">col 5</div>
+          </div>
+        </div>
       </div>
     </div>
   </div>
