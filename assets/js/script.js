@@ -33,13 +33,21 @@ todayEl.append(cityHumidity);
 
 console.log(cityTemp);
 
-//Variables to hold geographical location 
+//Variables to hold geographical location
+var longitude = "44.1";
+var latitude = "44.1";
 var coordinates = "lat=" + latitude + "&" + "lon=" + longitude;
-var longitude = "";
-var latitude = "";
 
-//Variable to hold api query
+
+//Variable to hold api query url
 var queryURL = "http://api.openweathermap.org/data/2.5/forecast?" + coordinates + "&appid=f51bb6b0db1117a9e5526eaa8621c68c";
 
-
-console.log(coordinates);
+//Perform an asynchronous HTTP (Ajax) request
+$.ajax({
+    url: queryURL,
+    method: "GET"
+  }).then(function(response) {
+    console.log(response);
+// console.log(coordinates);
+  
+});
