@@ -66,3 +66,10 @@ margin-bottom: 0.5rem;
     justify-content: space-evenly;
     align-items: stretch;
 }
+
+.five-day-forecast {
+    margin: 10px;
+    background-color: rgb(45 62 80);
+    color: white;
+
+}
