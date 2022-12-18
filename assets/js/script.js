@@ -6,12 +6,6 @@ var todaysDate = moment();
 //Variable to get the id #today
 var todayEl = $("#today");
 
-//Variable that will create a "h2" element with today's date using moment.js
-var cityTitleEl = $("<h2>"+ "<strong>" + "City " + "(" + todaysDate.format("D/MM/YYYY") + ") " + "</strong>" + "</h2>");
-
-//Append h2 element to id #today
-todayEl.append(cityTitleEl);
-
 //Variable to create a "h5" element that will hold the city temperature
 var cityTemp = $("<h5>" + "Temp: " + "</h5>");
 
@@ -31,22 +25,36 @@ var cityHumidity = $("<h5>" + "Humidity: " + "</h5>");
 //Append cityHumidity var to id #today
 todayEl.append(cityHumidity);
 
+//Prevent default on Search input (Form Elements)//
+//--------------------------------//
 //Variables that target the search form & search input using the respective ids
 var formEl = $("#search-form");
 var citySearch = $("#search-input");
 
 function handleFormSubmit(event) {
+    
+
     //prevent the default behavior
     event.preventDefault();
 
-    console.log(citySearch.val());
+    // console.log(citySearch.val());
+
+    //Variable to store searched city & today's date
+    var cityTitleEl = $("<h2>"+ "<strong>" + (citySearch.val()) + " " + "(" + todaysDate.format("D/MM/YYYY") + ") " + "</strong>" + "</h2>");
+    
+    //Prepend city title element to <h2> tag in id #today, before today's date
+    todayEl.prepend(cityTitleEl) + "(" + todaysDate.format("D/MM/YYYY") + ")";
 
     //Clear input fields
     $('input[type="text"]').val("");
+    
+    $( this ).off ( event );
+
 }
 
 //Submit event on the form
 formEl.on("submit", handleFormSubmit);
+
 
 
 
@@ -71,3 +79,4 @@ formEl.on("submit", handleFormSubmit);
 // // console.log(response.list[0].main.temp);
   
 // });
+
