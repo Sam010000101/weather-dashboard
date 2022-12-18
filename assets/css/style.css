@@ -35,9 +35,20 @@ margin-bottom: 0.5rem;
     margin-bottom: 10px;
 }
 
-#cityData {
+
+#today {
     border: 2px solid black;
     margin-top: 0.5rem;
+    margin-right: -15px;
+    padding: 8px;
+    align-self: flex-start;
+}
+
+#forecast {
+    border: 2px solid black;
+    margin-top: 0.5rem;
+    margin-left: 0;
+    padding: 8px;
     align-self: flex-start;
 }
 
