@@ -37,7 +37,7 @@ $.ajax({
     url: queryURL,
     method: "GET"
   }).then(function(response) {
-    console.log(response);
+    // console.log(response);
 
     // console.log(response.main.temp);
     
@@ -56,6 +56,30 @@ $(todayEl).append("<h5>" + "Humidity: " + response.main.humidity + "%" + "</h5>"
 
 
 });
+
+//Variable to get the id #today
+var forecastOneEl = $("#five-day-one");
+
+//Variable to hold api query url
+var queryURLForecast = "http://api.openweathermap.org/data/2.5/forecast?q=" + city + "&appid=f51bb6b0db1117a9e5526eaa8621c68c";
+
+//Perform an asynchronous HTTP (Ajax) request
+$.ajax({
+    url: queryURLForecast,
+    method: "GET"
+  }).then(function(response) {
+    // console.log(response);
+
+//Append cityTemp var to id #today & add temperature data from OpenWeather API
+
+$(forecastOneEl).append("<h6>" + moment().add(1, "day").format("D/MM/YYYY") + "</h6>");
+$(forecastOneEl).append("<p>" + "Temp: " + response.list[1].main.temp + " \u00B0C" + "</p>");
+$(forecastOneEl).append("<p>" + "Wind Speed: " + response.list[1].wind.speed + " KPH" + "</p>");
+$(forecastOneEl).append("<p>" + "Humidity: " + response.list[1].main.humidity + "%" + "</p>");
+
+
+});
+
 
 
 
