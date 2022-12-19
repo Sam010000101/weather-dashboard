@@ -6,6 +6,12 @@ var todaysDate = moment();
 //Variable to get the id #today
 var todayEl = $("#today");
 
+//Variable to get the buttons by id
+
+
+
+
+
 //Variable to create a "h5" element that will hold the city temperature
 var cityTemp = $("<h5>" + "Temp: " + "</h5>");
 
@@ -45,11 +51,26 @@ function handleFormSubmit(event) {
     //Prepend city title element to <h2> tag in id #today, before today's date
     todayEl.prepend(cityTitleEl) + "(" + todaysDate.format("D/MM/YYYY") + ")";
 
+    //Replace default button text with searched city
+    var historyButtonOne = $("#historyButton-1");
+    var historyButtonTwo = $("#historyButton-2");
+    var historyButtonThree = $("#historyButton-3");
+    var historyButtonFour = $("#historyButton-4");
+    var historyButtonFive = $("#historyButton-5");
+    var historyButtonSix = $("#historyButton-6");
+
+    historyButtonOne.html("<p>" + (citySearch.val()) + "</p>");
+    historyButtonTwo.html("<p>" + (citySearch.val()) + "</p>");
+    historyButtonThree.html("<p>" + (citySearch.val()) + "</p>");
+    historyButtonFour.html("<p>" + (citySearch.val()) + "</p>");
+    historyButtonFive.html("<p>" + (citySearch.val()) + "</p>");
+    historyButtonSix.html("<p>" + (citySearch.val()) + "</p>");
+    
+   $(this).off (event);
+
     //Clear input fields
     $('input[type="text"]').val("");
     
-    $( this ).off ( event );
-
 }
 
 //Submit event on the form
