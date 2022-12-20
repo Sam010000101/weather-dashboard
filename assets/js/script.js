@@ -109,16 +109,44 @@ $(forecastFourEl).append("<p>" + "Humidity: " + response.list[25].main.humidity 
 
 //fifth day forecast
 $(forecastFiveEl).append("<h6>" + moment().add(5, "day").format("D/MM/YYYY") + "</h6>");
+// $(forecastFiveEl).append("<p>" + response.list[33].weather[0].icon + "</p>");
 $(forecastFiveEl).append("<p>" + "Temp: " + response.list[33].main.temp + " \u00B0C" + "</p>");
 $(forecastFiveEl).append("<p>" + "Wind Speed: " + response.list[33].wind.speed + " KPH" + "</p>");
 $(forecastFiveEl).append("<p>" + "Humidity: " + response.list[33].main.humidity + "%" + "</p>");
 // //log the JSON time stamp to check the correct weather data is being called
 // console.log(response.list[33].dt_txt);
-
+// console.log(response.list[33].weather[0].icon);
 
 });
 
+// Deal with icons
+// ----------------------------------
 
+var icon = "01d";
+
+//Variable to hold api query url
+var queryURLIcons = "http://openweathermap.org/img/wn/" + icon + "@2x.png";
+
+
+//Perform an asynchronous HTTP (Ajax) request
+$.ajax({
+    url: queryURLIcons,
+    method: "GET"
+  }).then(function(response) {
+    // console.log(response);
+
+
+
+//Add weather icon image to forecast columns    
+var imgEl = document.createElement("img");
+imgEl.setAttribute("src", queryURLIcons, );
+imgEl.setAttribute("style", "width:50%; margin-left:auto; margin-right:auto;");
+    $(forecastFiveEl).prepend(imgEl);
+
+
+
+console.log(queryURLIcons);
+});
 
 
 //Prevent default on Search input (Form Elements)//
@@ -166,9 +194,6 @@ function handleFormSubmit(event) {
 
 //Submit event on the form
 formEl.on("submit", handleFormSubmit);
-
-
-
 
 
 
