@@ -76,7 +76,7 @@ $.ajax({
 
 //Append cityTemp var to id #today & add temperature data from OpenWeather API
 //first day forecast
-$(forecastOneEl).append("<h6>" + moment().add(1, "day").format("D/MM/YYYY") + "</h6>");
+$(forecastOneEl).append("<h5>" + moment().add(1, "day").format("D/MM/YYYY") + "</h5>");
 $(forecastOneEl).append("<p>" + "Temp: " + response.list[1].main.temp + " \u00B0C" + "</p>");
 $(forecastOneEl).append("<p>" + "Wind Speed: " + response.list[1].wind.speed + " KPH" + "</p>");
 $(forecastOneEl).append("<p>" + "Humidity: " + response.list[1].main.humidity + "%" + "</p>");
@@ -84,7 +84,7 @@ $(forecastOneEl).append("<p>" + "Humidity: " + response.list[1].main.humidity + 
 // console.log(response.list[1].dt_txt);
 
 //second day forecast
-$(forecastTwoEl).append("<h6>" + moment().add(2, "day").format("D/MM/YYYY") + "</h6>");
+$(forecastTwoEl).append("<h5>" + moment().add(2, "day").format("D/MM/YYYY") + "</h5>");
 $(forecastTwoEl).append("<p>" + "Temp: " + response.list[9].main.temp + " \u00B0C" + "</p>");
 $(forecastTwoEl).append("<p>" + "Wind Speed: " + response.list[9].wind.speed + " KPH" + "</p>");
 $(forecastTwoEl).append("<p>" + "Humidity: " + response.list[9].main.humidity + "%" + "</p>");
@@ -92,7 +92,7 @@ $(forecastTwoEl).append("<p>" + "Humidity: " + response.list[9].main.humidity + 
 // console.log(response.list[9].dt_txt);
 
 //third day forecast
-$(forecastThreeEl).append("<h6>" + moment().add(3, "day").format("D/MM/YYYY") + "</h6>");
+$(forecastThreeEl).append("<h5>" + moment().add(3, "day").format("D/MM/YYYY") + "</h5>");
 $(forecastThreeEl).append("<p>" + "Temp: " + response.list[17].main.temp + " \u00B0C" + "</p>");
 $(forecastThreeEl).append("<p>" + "Wind Speed: " + response.list[17].wind.speed + " KPH" + "</p>");
 $(forecastThreeEl).append("<p>" + "Humidity: " + response.list[17].main.humidity + "%" + "</p>");
@@ -100,7 +100,7 @@ $(forecastThreeEl).append("<p>" + "Humidity: " + response.list[17].main.humidity
 // console.log(response.list[17].dt_txt);
 
 //fourth day forecast
-$(forecastFourEl).append("<h6>" + moment().add(4, "day").format("D/MM/YYYY") + "</h6>");
+$(forecastFourEl).append("<h5>" + moment().add(4, "day").format("D/MM/YYYY") + "</h5>");
 $(forecastFourEl).append("<p>" + "Temp: " + response.list[25].main.temp + " \u00B0C" + "</p>");
 $(forecastFourEl).append("<p>" + "Wind Speed: " + response.list[25].wind.speed + " KPH" + "</p>");
 $(forecastFourEl).append("<p>" + "Humidity: " + response.list[25].main.humidity + "%" + "</p>");
@@ -108,8 +108,7 @@ $(forecastFourEl).append("<p>" + "Humidity: " + response.list[25].main.humidity 
 // console.log(response.list[25].dt_txt);
 
 //fifth day forecast
-$(forecastFiveEl).append("<h6>" + moment().add(5, "day").format("D/MM/YYYY") + "</h6>");
-// $(forecastFiveEl).append("<p>" + response.list[33].weather[0].icon + "</p>");
+insertIcon();
 $(forecastFiveEl).append("<p>" + "Temp: " + response.list[33].main.temp + " \u00B0C" + "</p>");
 $(forecastFiveEl).append("<p>" + "Wind Speed: " + response.list[33].wind.speed + " KPH" + "</p>");
 $(forecastFiveEl).append("<p>" + "Humidity: " + response.list[33].main.humidity + "%" + "</p>");
@@ -119,7 +118,7 @@ $(forecastFiveEl).append("<p>" + "Humidity: " + response.list[33].main.humidity 
 
 });
 
-// Deal with icons
+// Add relevant weather icons to columns
 // ----------------------------------
 
 var icon = "01d";
@@ -127,27 +126,28 @@ var icon = "01d";
 //Variable to hold api query url
 var queryURLIcons = "http://openweathermap.org/img/wn/" + icon + "@2x.png";
 
-
-//Perform an asynchronous HTTP (Ajax) request
+//Perform an asynchronous HTTP (Ajax) request to get weather icon
+function insertIcon() {
 $.ajax({
     url: queryURLIcons,
     method: "GET"
   }).then(function(response) {
     // console.log(response);
 
-
-
-//Add weather icon image to forecast columns    
+//Add weather icon image to fifth forecast column
 var imgEl = document.createElement("img");
-imgEl.setAttribute("src", queryURLIcons, );
+imgEl.setAttribute("id", "weatherIconFive");
+imgEl.setAttribute("src", queryURLIcons);
 imgEl.setAttribute("style", "width:50%; margin-left:auto; margin-right:auto;");
     $(forecastFiveEl).prepend(imgEl);
 
+//Insert fifth day forecast date before the weather icon    
+$("<h5>" + moment().add(5, "day").format("D/MM/YYYY") + "</h5>").insertBefore(weatherIconFive);
 
+// console.log(queryURLIcons);
 
-console.log(queryURLIcons);
 });
-
+}
 
 //Prevent default on Search input (Form Elements)//
 //--------------------------------//
@@ -167,7 +167,7 @@ function handleFormSubmit(event) {
     var cityTitleEl = $("<h2>"+ "<strong>" + (citySearch.val()) + " " + "(" + todaysDate.format("D/MM/YYYY") + ") " + "</strong>" + "</h2>");
     
     //Prepend city title element to <h2> tag in id #today, before today's date
-    todayEl.prepend(cityTitleEl) + "(" + todaysDate.format("D/MM/YYYY") + ")";
+    $(todayEl).prepend(cityTitleEl) + "(" + todaysDate.format("D/MM/YYYY") + ")";
 
     //Replace default button text with searched city
     var historyButtonOne = $("#historyButton-1");
