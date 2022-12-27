@@ -66,65 +66,70 @@ var forecastFiveEl = $("#five-day-five");
 
 //Variable to hold api query url
 var queryURLForecast = "http://api.openweathermap.org/data/2.5/forecast?q=" + city + "&appid=f51bb6b0db1117a9e5526eaa8621c68c";
+    // console.log(queryURLForecast);
 
 //Perform an asynchronous HTTP (Ajax) request
 $.ajax({
     url: queryURLForecast,
     method: "GET"
   }).then(function(response) {
+// console.log(queryURLForecast);
     // console.log(response);
 
 //Append cityTemp var to id #today & add temperature data from OpenWeather API
 //first day forecast
 $(forecastOneEl).append("<h5>" + moment().add(1, "day").format("D/MM/YYYY") + "</h5>");
-$(forecastOneEl).append("<p>" + "Temp: " + response.list[1].main.temp + " \u00B0C" + "</p>");
-$(forecastOneEl).append("<p>" + "Wind Speed: " + response.list[1].wind.speed + " KPH" + "</p>");
-$(forecastOneEl).append("<p>" + "Humidity: " + response.list[1].main.humidity + "%" + "</p>");
+$(forecastOneEl).append("<p>" + "Temp: " + response.list[5].main.temp + " \u00B0C" + "</p>");
+$(forecastOneEl).append("<p>" + "Wind Speed: " + response.list[5].wind.speed + " KPH" + "</p>");
+$(forecastOneEl).append("<p>" + "Humidity: " + response.list[5].main.humidity + "%" + "</p>");
 // //log the JSON time stamp to check the correct weather data is being called
 // console.log(response.list[1].dt_txt);
 
 //second day forecast
 $(forecastTwoEl).append("<h5>" + moment().add(2, "day").format("D/MM/YYYY") + "</h5>");
-$(forecastTwoEl).append("<p>" + "Temp: " + response.list[9].main.temp + " \u00B0C" + "</p>");
-$(forecastTwoEl).append("<p>" + "Wind Speed: " + response.list[9].wind.speed + " KPH" + "</p>");
-$(forecastTwoEl).append("<p>" + "Humidity: " + response.list[9].main.humidity + "%" + "</p>");
+$(forecastTwoEl).append("<p>" + "Temp: " + response.list[13].main.temp + " \u00B0C" + "</p>");
+$(forecastTwoEl).append("<p>" + "Wind Speed: " + response.list[13].wind.speed + " KPH" + "</p>");
+$(forecastTwoEl).append("<p>" + "Humidity: " + response.list[13].main.humidity + "%" + "</p>");
 // //log the JSON time stamp to check the correct weather data is being called
 // console.log(response.list[9].dt_txt);
 
 //third day forecast
 $(forecastThreeEl).append("<h5>" + moment().add(3, "day").format("D/MM/YYYY") + "</h5>");
-$(forecastThreeEl).append("<p>" + "Temp: " + response.list[17].main.temp + " \u00B0C" + "</p>");
-$(forecastThreeEl).append("<p>" + "Wind Speed: " + response.list[17].wind.speed + " KPH" + "</p>");
-$(forecastThreeEl).append("<p>" + "Humidity: " + response.list[17].main.humidity + "%" + "</p>");
+$(forecastThreeEl).append("<p>" + "Temp: " + response.list[21].main.temp + " \u00B0C" + "</p>");
+$(forecastThreeEl).append("<p>" + "Wind Speed: " + response.list[21].wind.speed + " KPH" + "</p>");
+$(forecastThreeEl).append("<p>" + "Humidity: " + response.list[21].main.humidity + "%" + "</p>");
 // //log the JSON time stamp to check the correct weather data is being called
 // console.log(response.list[17].dt_txt);
 
 //fourth day forecast
 $(forecastFourEl).append("<h5>" + moment().add(4, "day").format("D/MM/YYYY") + "</h5>");
-$(forecastFourEl).append("<p>" + "Temp: " + response.list[25].main.temp + " \u00B0C" + "</p>");
-$(forecastFourEl).append("<p>" + "Wind Speed: " + response.list[25].wind.speed + " KPH" + "</p>");
-$(forecastFourEl).append("<p>" + "Humidity: " + response.list[25].main.humidity + "%" + "</p>");
+$(forecastFourEl).append("<p>" + "Temp: " + response.list[29].main.temp + " \u00B0C" + "</p>");
+$(forecastFourEl).append("<p>" + "Wind Speed: " + response.list[29].wind.speed + " KPH" + "</p>");
+$(forecastFourEl).append("<p>" + "Humidity: " + response.list[29].main.humidity + "%" + "</p>");
 // //log the JSON time stamp to check the correct weather data is being called
 // console.log(response.list[25].dt_txt);
 
 //fifth day forecast
 insertIcon();
-$(forecastFiveEl).append("<p>" + "Temp: " + response.list[33].main.temp + " \u00B0C" + "</p>");
-$(forecastFiveEl).append("<p>" + "Wind Speed: " + response.list[33].wind.speed + " KPH" + "</p>");
-$(forecastFiveEl).append("<p>" + "Humidity: " + response.list[33].main.humidity + "%" + "</p>");
+$(forecastFiveEl).append("<p>" + "Temp: " + response.list[37].main.temp + " \u00B0C" + "</p>");
+$(forecastFiveEl).append("<p>" + "Wind Speed: " + response.list[37].wind.speed + " KPH" + "</p>");
+$(forecastFiveEl).append("<p>" + "Humidity: " + response.list[37].main.humidity + "%" + "</p>");
 // //log the JSON time stamp to check the correct weather data is being called
 // console.log(response.list[33].dt_txt);
 // console.log(response.list[33].weather[0].icon);
 
-});
-
 // Add relevant weather icons to columns
 // ----------------------------------
 
-var icon = "01d";
+//Variable to hold relevant weather icon
+var weatherIconGrab = response.list[37].weather[0].icon + "@2x.png";
+// console.log(weatherIconGrab);
 
 //Variable to hold api query url
-var queryURLIcons = "http://openweathermap.org/img/wn/" + icon + "@2x.png";
+var queryURLIcons = "http://openweathermap.org/img/wn/" + weatherIconGrab;
+
+//Inject correct weather icon code into queryURLIcons for corresponding date 
+
 
 //Perform an asynchronous HTTP (Ajax) request to get weather icon
 function insertIcon() {
@@ -144,10 +149,17 @@ imgEl.setAttribute("style", "width:50%; margin-left:auto; margin-right:auto;");
 //Insert fifth day forecast date before the weather icon    
 $("<h5>" + moment().add(5, "day").format("D/MM/YYYY") + "</h5>").insertBefore(weatherIconFive);
 
-// console.log(queryURLIcons);
+console.log(queryURLIcons);
 
 });
 }
+
+
+
+});
+
+
+
 
 //Prevent default on Search input (Form Elements)//
 //--------------------------------//
