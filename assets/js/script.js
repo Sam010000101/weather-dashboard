@@ -55,6 +55,7 @@ $(todayEl).append("<h5>" + "Wind Speed: " + response.wind.speed + " KPH" + "</h5
 $(todayEl).append("<h5>" + "Humidity: " + response.main.humidity + "%" + "</h5>");
 
 
+
 });
 
 //Variable to get the id #today
@@ -78,7 +79,6 @@ $.ajax({
 
 //Append cityTemp var to id #today & add temperature data from OpenWeather API
 //first day forecast
-$(forecastOneEl).append("<h5>" + moment().add(1, "day").format("D/MM/YYYY") + "</h5>");
 $(forecastOneEl).append("<p>" + "Temp: " + response.list[5].main.temp + " \u00B0C" + "</p>");
 $(forecastOneEl).append("<p>" + "Wind Speed: " + response.list[5].wind.speed + " KPH" + "</p>");
 $(forecastOneEl).append("<p>" + "Humidity: " + response.list[5].main.humidity + "%" + "</p>");
@@ -122,11 +122,23 @@ $(forecastFiveEl).append("<p>" + "Humidity: " + response.list[37].main.humidity 
 // ----------------------------------
 
 //Variable to hold relevant weather icon
-var weatherIconGrab = response.list[37].weather[0].icon + "@2x.png";
+var weatherIconGrabOne = response.list[5].weather[0].icon + "@2x.png";
+var weatherIconGrabTwo = response.list[13].weather[0].icon + "@2x.png";
+var weatherIconGrabThree = response.list[21].weather[0].icon + "@2x.png";
+var weatherIconGrabFour = response.list[29].weather[0].icon + "@2x.png";
+var weatherIconGrabFive = response.list[37].weather[0].icon + "@2x.png";
+// console.log(weatherIconGrabOne);
+
+
+// var weatherIconGrab = {response.list[5].weather.icon + "@2x.png", response.list[13].weather.icon + "@2x.png", response.list[21].weather.icon + "@2x.png", response.list[29].weather.icon + "@2x.png", response.list[37].weather.icon + "@2x.png"};
+
 // console.log(weatherIconGrab);
 
+// var queryURLIconsGrab = "http://openweathermap.org/img/wn/" + weatherIconGrab;
+
+
 //Variable to hold api query url
-var queryURLIcons = "http://openweathermap.org/img/wn/" + weatherIconGrab;
+var queryURLIcons = "http://openweathermap.org/img/wn/" + weatherIconGrabOne;
 
 //Inject correct weather icon code into queryURLIcons for corresponding date 
 
@@ -139,15 +151,15 @@ $.ajax({
   }).then(function(response) {
     // console.log(response);
 
-//Add weather icon image to fifth forecast column
+//Add weather icon image to first forecast column
 var imgEl = document.createElement("img");
-imgEl.setAttribute("id", "weatherIconFive");
+imgEl.setAttribute("id", "weatherIconOne");
 imgEl.setAttribute("src", queryURLIcons);
 imgEl.setAttribute("style", "width:50%; margin-left:auto; margin-right:auto;");
-    $(forecastFiveEl).prepend(imgEl);
+    $(forecastOneEl).prepend(imgEl);
 
-//Insert fifth day forecast date before the weather icon    
-$("<h5>" + moment().add(5, "day").format("D/MM/YYYY") + "</h5>").insertBefore(weatherIconFive);
+//Insert first day forecast date before the weather icon    
+$("<h5>" + moment().add(1, "day").format("D/MM/YYYY") + "</h5>").insertBefore(weatherIconOne);
 
 console.log(queryURLIcons);
 
@@ -175,11 +187,25 @@ function handleFormSubmit(event) {
 
     // console.log(citySearch.val());
 
+
     //Variable to store searched city & today's date
     var cityTitleEl = $("<h2>"+ "<strong>" + (citySearch.val()) + " " + "(" + todaysDate.format("D/MM/YYYY") + ") " + "</strong>" + "</h2>");
-    
+    cityTitleEl.attr('id', 'todayCityDate')
+
     //Prepend city title element to <h2> tag in id #today, before today's date
     $(todayEl).prepend(cityTitleEl) + "(" + todaysDate.format("D/MM/YYYY") + ")";
+    
+    //Variable to store today's weather icon
+    var todaysWeatherIcon = $('<img>');
+    // todaysWeatherIcon.attr('id', 'todaysWeatherIcon')
+    todaysWeatherIcon.attr('src', './assets/10-server-side-apis-challenge-demo.png');
+    // todaysWeatherIcon.attr("style", "width:50%; margin-left:auto; margin-right:auto;")
+    todaysWeatherIcon.attr("style", "width:20%; display:inline")
+    todaysWeatherIcon.appendTo('#todayCityDate');
+    
+    //Get today's weather icon
+
+  
 
     //Replace default button text with searched city
     var historyButtonOne = $("#historyButton-1");
