@@ -231,7 +231,8 @@ function handleFormSubmit(event) {
 
     //Variable to store searched city & today's date
     var cityTitleEl = $("<h2>"+ "<strong>" + (citySearch.val()) + " " + "(" + todaysDate.format("D/MM/YYYY") + ") " + "</strong>" + "</h2>");
-    cityTitleEl.attr('id', 'todayCityDate')
+    cityTitleEl.attr('id', 'todayCityDate');
+    cityTitleEl.attr('style', 'margin-top:-15px;');
 
     //Prepend city title element to <h2> tag in id #today, before today's date
     $(todayEl).prepend(cityTitleEl) + "(" + todaysDate.format("D/MM/YYYY") + ")";
@@ -239,9 +240,9 @@ function handleFormSubmit(event) {
     //Variable to store today's weather icon
     var todaysWeatherIcon = $('<img>');
     // todaysWeatherIcon.attr('id', 'todaysWeatherIcon')
-    todaysWeatherIcon.attr('src', './assets/10-server-side-apis-challenge-demo.png');
+    todaysWeatherIcon.attr('src', queryURLIcons);
     // todaysWeatherIcon.attr("style", "width:50%; margin-left:auto; margin-right:auto;")
-    todaysWeatherIcon.attr("style", "width:20%; display:inline")
+    todaysWeatherIcon.attr("style", "display:inline; height:5rem;");
     todaysWeatherIcon.appendTo('#todayCityDate');
     
     //Get today's weather icon
