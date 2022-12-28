@@ -86,7 +86,7 @@ $(forecastOneEl).append("<p>" + "Humidity: " + response.list[5].main.humidity + 
 // console.log(response.list[1].dt_txt);
 
 //second day forecast
-$(forecastTwoEl).append("<h5>" + moment().add(2, "day").format("D/MM/YYYY") + "</h5>");
+// $(forecastTwoEl).append("<h5>" + moment().add(2, "day").format("D/MM/YYYY") + "</h5>");
 $(forecastTwoEl).append("<p>" + "Temp: " + response.list[13].main.temp + " \u00B0C" + "</p>");
 $(forecastTwoEl).append("<p>" + "Wind Speed: " + response.list[13].wind.speed + " KPH" + "</p>");
 $(forecastTwoEl).append("<p>" + "Humidity: " + response.list[13].main.humidity + "%" + "</p>");
@@ -94,7 +94,7 @@ $(forecastTwoEl).append("<p>" + "Humidity: " + response.list[13].main.humidity +
 // console.log(response.list[9].dt_txt);
 
 //third day forecast
-$(forecastThreeEl).append("<h5>" + moment().add(3, "day").format("D/MM/YYYY") + "</h5>");
+// $(forecastThreeEl).append("<h5>" + moment().add(3, "day").format("D/MM/YYYY") + "</h5>");
 $(forecastThreeEl).append("<p>" + "Temp: " + response.list[21].main.temp + " \u00B0C" + "</p>");
 $(forecastThreeEl).append("<p>" + "Wind Speed: " + response.list[21].wind.speed + " KPH" + "</p>");
 $(forecastThreeEl).append("<p>" + "Humidity: " + response.list[21].main.humidity + "%" + "</p>");
@@ -102,7 +102,7 @@ $(forecastThreeEl).append("<p>" + "Humidity: " + response.list[21].main.humidity
 // console.log(response.list[17].dt_txt);
 
 //fourth day forecast
-$(forecastFourEl).append("<h5>" + moment().add(4, "day").format("D/MM/YYYY") + "</h5>");
+// $(forecastFourEl).append("<h5>" + moment().add(4, "day").format("D/MM/YYYY") + "</h5>");
 $(forecastFourEl).append("<p>" + "Temp: " + response.list[29].main.temp + " \u00B0C" + "</p>");
 $(forecastFourEl).append("<p>" + "Wind Speed: " + response.list[29].wind.speed + " KPH" + "</p>");
 $(forecastFourEl).append("<p>" + "Humidity: " + response.list[29].main.humidity + "%" + "</p>");
@@ -110,7 +110,6 @@ $(forecastFourEl).append("<p>" + "Humidity: " + response.list[29].main.humidity 
 // console.log(response.list[25].dt_txt);
 
 //fifth day forecast
-insertIcon();
 $(forecastFiveEl).append("<p>" + "Temp: " + response.list[37].main.temp + " \u00B0C" + "</p>");
 $(forecastFiveEl).append("<p>" + "Wind Speed: " + response.list[37].wind.speed + " KPH" + "</p>");
 $(forecastFiveEl).append("<p>" + "Humidity: " + response.list[37].main.humidity + "%" + "</p>");
@@ -140,6 +139,9 @@ var weatherIconGrabFive = response.list[37].weather[0].icon + "@2x.png";
 //Variable to hold api query url
 var queryURLIcons = "http://openweathermap.org/img/wn/" + weatherIconGrabOne;
 
+// Do we need a switch-case? to specify the conditions for the correct icon url?
+
+
 //Inject correct weather icon code into queryURLIcons for corresponding date 
 
 
@@ -151,24 +153,63 @@ $.ajax({
   }).then(function(response) {
     // console.log(response);
 
+});
+}
+
 //Add weather icon image to first forecast column
 var imgEl = document.createElement("img");
 imgEl.setAttribute("id", "weatherIconOne");
 imgEl.setAttribute("src", queryURLIcons);
-imgEl.setAttribute("style", "width:50%; margin-left:auto; margin-right:auto;");
+imgEl.setAttribute("style", "width:50%; margin-left:-1rem;");
     $(forecastOneEl).prepend(imgEl);
 
 //Insert first day forecast date before the weather icon    
 $("<h5>" + moment().add(1, "day").format("D/MM/YYYY") + "</h5>").insertBefore(weatherIconOne);
 
-console.log(queryURLIcons);
+// console.log(queryURLIcons);
 
-});
-}
+//Add weather icon image to second forecast column
+var imgEl = document.createElement("img");
+imgEl.setAttribute("id", "weatherIconTwo");
+imgEl.setAttribute("src", queryURLIcons);
+imgEl.setAttribute("style", "width:50%; margin-left:-1rem;");
+    $(forecastTwoEl).prepend(imgEl);
+
+//Insert first day forecast date before the weather icon    
+$("<h5>" + moment().add(2, "day").format("D/MM/YYYY") + "</h5>").insertBefore(weatherIconTwo);
+
+//Add weather icon image to third forecast column
+var imgEl = document.createElement("img");
+imgEl.setAttribute("id", "weatherIconThree");
+imgEl.setAttribute("src", queryURLIcons);
+imgEl.setAttribute("style", "width:50%; margin-left:-1rem;");
+    $(forecastThreeEl).prepend(imgEl);
+
+//Insert first day forecast date before the weather icon    
+$("<h5>" + moment().add(3, "day").format("D/MM/YYYY") + "</h5>").insertBefore(weatherIconThree);
+
+//Add weather icon image to fourth forecast column
+var imgEl = document.createElement("img");
+imgEl.setAttribute("id", "weatherIconFour");
+imgEl.setAttribute("src", queryURLIcons);
+imgEl.setAttribute("style", "width:50%; margin-left:-1rem;");
+    $(forecastFourEl).prepend(imgEl);
+
+//Insert first day forecast date before the weather icon    
+$("<h5>" + moment().add(4, "day").format("D/MM/YYYY") + "</h5>").insertBefore(weatherIconFour);
+
+//Add weather icon image to fifth forecast column
+var imgEl = document.createElement("img");
+imgEl.setAttribute("id", "weatherIconFive");
+imgEl.setAttribute("src", queryURLIcons);
+imgEl.setAttribute("style", "width:50%; margin-left:-1rem;");
+    $(forecastFiveEl).prepend(imgEl);
+
+//Insert first day forecast date before the weather icon    
+$("<h5>" + moment().add(5, "day").format("D/MM/YYYY") + "</h5>").insertBefore(weatherIconFive);
 
 
 
-});
 
 
 
@@ -229,9 +270,17 @@ function handleFormSubmit(event) {
     $('input[type="text"]').val("");
     
 }
-
 //Submit event on the form
 formEl.on("submit", handleFormSubmit);
+
+});
+
+
+
+
+
+
+
 
 
 
