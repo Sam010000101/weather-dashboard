@@ -128,16 +128,12 @@ var weatherIconGrabFour = response.list[29].weather[0].icon + "@2x.png";
 var weatherIconGrabFive = response.list[37].weather[0].icon + "@2x.png";
 // console.log(weatherIconGrabOne);
 
-
-// var weatherIconGrab = {response.list[5].weather.icon + "@2x.png", response.list[13].weather.icon + "@2x.png", response.list[21].weather.icon + "@2x.png", response.list[29].weather.icon + "@2x.png", response.list[37].weather.icon + "@2x.png"};
-
-// console.log(weatherIconGrab);
-
-// var queryURLIconsGrab = "http://openweathermap.org/img/wn/" + weatherIconGrab;
-
-
 //Variable to hold api query url
-var queryURLIcons = "http://openweathermap.org/img/wn/" + weatherIconGrabOne;
+var queryURLIconOne = "http://openweathermap.org/img/wn/" + weatherIconGrabOne;
+var queryURLIconTwo = "http://openweathermap.org/img/wn/" + weatherIconGrabTwo;
+var queryURLIconThree = "http://openweathermap.org/img/wn/" + weatherIconGrabThree;
+var queryURLIconFour = "http://openweathermap.org/img/wn/" + weatherIconGrabFour;
+var queryURLIconFive = "http://openweathermap.org/img/wn/" + weatherIconGrabFive;
 
 // Do we need a switch-case? to specify the conditions for the correct icon url?
 
@@ -146,67 +142,101 @@ var queryURLIcons = "http://openweathermap.org/img/wn/" + weatherIconGrabOne;
 
 
 //Perform an asynchronous HTTP (Ajax) request to get weather icon
-function insertIcon() {
+
 $.ajax({
-    url: queryURLIcons,
+    url: queryURLIconOne,
     method: "GET"
   }).then(function(response) {
     // console.log(response);
 
 });
-}
 
 //Add weather icon image to first forecast column
 var imgEl = document.createElement("img");
 imgEl.setAttribute("id", "weatherIconOne");
-imgEl.setAttribute("src", queryURLIcons);
+imgEl.setAttribute("src", queryURLIconOne);
 imgEl.setAttribute("style", "width:50%; margin-left:-1rem;");
     $(forecastOneEl).prepend(imgEl);
 
 //Insert first day forecast date before the weather icon    
 $("<h5>" + moment().add(1, "day").format("D/MM/YYYY") + "</h5>").insertBefore(weatherIconOne);
+$("#five-day-one").attr("style", "padding-top:0.5rem;");
 
-// console.log(queryURLIcons);
+$.ajax({
+    url: queryURLIconTwo,
+    method: "GET"
+  }).then(function(response) {
+    // console.log(response);
+
+});
 
 //Add weather icon image to second forecast column
 var imgEl = document.createElement("img");
 imgEl.setAttribute("id", "weatherIconTwo");
-imgEl.setAttribute("src", queryURLIcons);
+imgEl.setAttribute("src", queryURLIconTwo);
 imgEl.setAttribute("style", "width:50%; margin-left:-1rem;");
     $(forecastTwoEl).prepend(imgEl);
 
 //Insert first day forecast date before the weather icon    
 $("<h5>" + moment().add(2, "day").format("D/MM/YYYY") + "</h5>").insertBefore(weatherIconTwo);
+$("#five-day-two").attr("style", "padding-top:0.5rem;");
+
+$.ajax({
+    url: queryURLIconThree,
+    method: "GET"
+  }).then(function(response) {
+    // console.log(response);
+
+});
 
 //Add weather icon image to third forecast column
 var imgEl = document.createElement("img");
 imgEl.setAttribute("id", "weatherIconThree");
-imgEl.setAttribute("src", queryURLIcons);
+imgEl.setAttribute("src", queryURLIconThree);
 imgEl.setAttribute("style", "width:50%; margin-left:-1rem;");
     $(forecastThreeEl).prepend(imgEl);
 
 //Insert first day forecast date before the weather icon    
 $("<h5>" + moment().add(3, "day").format("D/MM/YYYY") + "</h5>").insertBefore(weatherIconThree);
+$("#five-day-three").attr("style", "padding-top:0.5rem;");
+
+$.ajax({
+    url: queryURLIconFour,
+    method: "GET"
+  }).then(function(response) {
+    // console.log(response);
+
+});
 
 //Add weather icon image to fourth forecast column
 var imgEl = document.createElement("img");
 imgEl.setAttribute("id", "weatherIconFour");
-imgEl.setAttribute("src", queryURLIcons);
+imgEl.setAttribute("src", queryURLIconFour);
 imgEl.setAttribute("style", "width:50%; margin-left:-1rem;");
     $(forecastFourEl).prepend(imgEl);
 
 //Insert first day forecast date before the weather icon    
 $("<h5>" + moment().add(4, "day").format("D/MM/YYYY") + "</h5>").insertBefore(weatherIconFour);
+$("#five-day-four").attr("style", "padding-top:0.5rem;");
+
+$.ajax({
+    url: queryURLIconFive,
+    method: "GET"
+  }).then(function(response) {
+    // console.log(response);
+
+});
 
 //Add weather icon image to fifth forecast column
 var imgEl = document.createElement("img");
 imgEl.setAttribute("id", "weatherIconFive");
-imgEl.setAttribute("src", queryURLIcons);
+imgEl.setAttribute("src", queryURLIconFive);
 imgEl.setAttribute("style", "width:50%; margin-left:-1rem;");
     $(forecastFiveEl).prepend(imgEl);
 
 //Insert first day forecast date before the weather icon    
 $("<h5>" + moment().add(5, "day").format("D/MM/YYYY") + "</h5>").insertBefore(weatherIconFive);
+$("#five-day-five").attr("style", "padding-top:0.5rem;");
 
 
 
@@ -275,6 +305,7 @@ function handleFormSubmit(event) {
 formEl.on("submit", handleFormSubmit);
 
 });
+
 
 
 
