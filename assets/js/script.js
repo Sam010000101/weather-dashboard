@@ -32,6 +32,7 @@ var city = "London";
 //Variable to hold api query url
 var queryURL = "http://api.openweathermap.org/data/2.5/weather?q=" + city + "&appid=f51bb6b0db1117a9e5526eaa8621c68c";
 
+
 //Perform an asynchronous HTTP (Ajax) request
 $.ajax({
     url: queryURL,
@@ -54,9 +55,13 @@ $(todayEl).append("<h5>" + "Temp: " + response.main.temp + " \u00B0C" + "</h5>")
 $(todayEl).append("<h5>" + "Wind Speed: " + response.wind.speed + " KPH" + "</h5>");
 $(todayEl).append("<h5>" + "Humidity: " + response.main.humidity + "%" + "</h5>");
 
-
+console.log(response);
+var todayWeatherIconCode = response.weather[0].icon;
+console.log(todayWeatherIconCode);
 
 });
+
+
 
 //Variable to get the id #today
 var forecastOneEl = $("#five-day-one");
@@ -240,10 +245,6 @@ $("#five-day-five").attr("style", "padding-top:0.5rem;");
 
 
 
-
-
-
-
 //Prevent default on Search input (Form Elements)//
 //--------------------------------//
 //Variables that target the search form & search input using the respective ids
@@ -258,6 +259,39 @@ function handleFormSubmit(event) {
 
     // console.log(citySearch.val());
 
+    queryURL
+    
+//Variable to hold relevant weather icon
+// var weatherIconGrabToday = response.list[5].weather[0].icon + "@2x.png";
+
+var city = "London";
+
+//Variable to hold api query url
+var queryURL = "http://api.openweathermap.org/data/2.5/weather?q=" + city + "&appid=f51bb6b0db1117a9e5526eaa8621c68c";
+
+$.ajax({
+    url: queryURL,
+    method: "GET"
+  }).then(function(response) {
+    // console.log(response);
+
+    console.log(response);
+var todayWeatherIconCode = response.weather[0].icon + "@2x.png";
+console.log(todayWeatherIconCode);
+
+
+
+
+//Variable to hold api query url
+var queryURLIconToday = "http://openweathermap.org/img/wn/" + todayWeatherIconCode;
+console.log(response);
+    $.ajax({
+        url: queryURLIconToday,
+        method: "GET"
+      }).then(function(response) {
+        // console.log(response);
+    
+    });
 
     //Variable to store searched city & today's date
     var cityTitleEl = $("<h2>"+ "<strong>" + (citySearch.val()) + " " + "(" + todaysDate.format("D/MM/YYYY") + ") " + "</strong>" + "</h2>");
@@ -270,11 +304,11 @@ function handleFormSubmit(event) {
     //Variable to store today's weather icon
     var todaysWeatherIcon = $('<img>');
     // todaysWeatherIcon.attr('id', 'todaysWeatherIcon')
-    todaysWeatherIcon.attr('src', queryURLIcons);
+    todaysWeatherIcon.attr('src', queryURLIconToday);
     // todaysWeatherIcon.attr("style", "width:50%; margin-left:auto; margin-right:auto;")
     todaysWeatherIcon.attr("style", "display:inline; height:5rem;");
     todaysWeatherIcon.appendTo('#todayCityDate');
-    
+
     //Get today's weather icon
 
   
@@ -299,12 +333,13 @@ function handleFormSubmit(event) {
 
     //Clear input fields
     $('input[type="text"]').val("");
-    
+});
 }
 //Submit event on the form
 formEl.on("submit", handleFormSubmit);
 
 });
+
 
 
 
