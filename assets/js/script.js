@@ -20,7 +20,7 @@ function handleFormSubmit(event) {
   var todayEl = $("#today");
 
 //Variable that holds the API query url to get the JSON for the current weather in the searched city
-  var queryURL = "http://api.openweathermap.org/data/2.5/weather?q=" + city + "&appid=f51bb6b0db1117a9e5526eaa8621c68c";
+  var queryURL = "https://api.openweathermap.org/data/2.5/weather?q=" + city + "&appid=f51bb6b0db1117a9e5526eaa8621c68c";
   // console.log(queryURL);
 
   //get JSON for searched/stored city
@@ -55,7 +55,7 @@ function handleFormSubmit(event) {
     // console.log(todayWeatherIconCode);
 
     //Variable that holds the API query url to get the JSON for the weather icon for the searched city's current weather
-    var queryURLIconToday = "http://openweathermap.org/img/wn/" + todayWeatherIconCode;
+    var queryURLIconToday = "https://openweathermap.org/img/wn/" + todayWeatherIconCode;
     // console.log(response);
     $.ajax({
       url: queryURLIconToday,
@@ -105,7 +105,7 @@ function handleFormSubmit(event) {
   var forecastFiveEl = $("#five-day-five");
 
   //Variable that holds the API query url to get the JSON for the five day forcast
-  var queryURLForecast = "http://api.openweathermap.org/data/2.5/forecast?q=" + city + "&appid=f51bb6b0db1117a9e5526eaa8621c68c";
+  var queryURLForecast = "https://api.openweathermap.org/data/2.5/forecast?q=" + city + "&appid=f51bb6b0db1117a9e5526eaa8621c68c";
   // console.log(queryURLForecast);
 
   //Perform an asynchronous HTTP (Ajax) request to get JSON for five day forecast, for the searched city
@@ -184,11 +184,11 @@ function handleFormSubmit(event) {
     // console.log(weatherIconGrabOne);
 
     //Variables that hold the API query urls to get the JSON for the weather icons for the five day forcast
-    var queryURLIconOne = "http://openweathermap.org/img/wn/" + weatherIconGrabOne;
-    var queryURLIconTwo = "http://openweathermap.org/img/wn/" + weatherIconGrabTwo;
-    var queryURLIconThree = "http://openweathermap.org/img/wn/" + weatherIconGrabThree;
-    var queryURLIconFour = "http://openweathermap.org/img/wn/" + weatherIconGrabFour;
-    var queryURLIconFive = "http://openweathermap.org/img/wn/" + weatherIconGrabFive;
+    var queryURLIconOne = "https://openweathermap.org/img/wn/" + weatherIconGrabOne;
+    var queryURLIconTwo = "https://openweathermap.org/img/wn/" + weatherIconGrabTwo;
+    var queryURLIconThree = "https://openweathermap.org/img/wn/" + weatherIconGrabThree;
+    var queryURLIconFour = "https://openweathermap.org/img/wn/" + weatherIconGrabFour;
+    var queryURLIconFive = "https://openweathermap.org/img/wn/" + weatherIconGrabFive;
 
     //Perform an asynchronous HTTP (Ajax) request to get weather icon for the first day of five days of forecasts
     $.ajax({
