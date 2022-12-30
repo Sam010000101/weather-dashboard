@@ -8,7 +8,7 @@ var citySearch = $("#search-input");
 function handleFormSubmit(event) {
   //Prevents the default behavior
   event.preventDefault();
-  console.log(event);
+  // console.log(event);
   //Variable that holds the city search form input
   var city = (citySearch.val());
 
@@ -71,7 +71,7 @@ function handleFormSubmit(event) {
     var cityTitleEl = $("<h2>" + "<strong>" + (citySearch.val()) + " " + "(" + todaysDate.format("D/MM/YYYY") + ") " + "</strong>" + "</h2>");
     cityTitleEl.attr('id', 'todayCityDate');
     cityTitleEl.attr('style', 'margin-top:-15px; margin-bottom:0;');
-
+    
     //Prepend city title element to <h2> tag in id #today, before today's date
     $(todayEl).prepend(cityTitleEl) + "(" + todaysDate.format("D/MM/YYYY") + ")";
 
@@ -83,18 +83,19 @@ function handleFormSubmit(event) {
     todaysWeatherIcon.attr("style", "display:inline; height:5rem;");
     todaysWeatherIcon.appendTo('#todayCityDate');
 
+    
+    // // Local storage for the search city
+    // var cityChosen = document.querySelector('#search-input');
 
-    // Local storage for the search city
-    var searchedCity = localStorage.getItem('search-input', $('#search-input').val());
+    // renderLastRegistered();
 
-    localStorage.setItem('search-input', $('#search-input').val());
+    // function renderLastRegistered() {
+    //   var searchedCity = localStorage.getItem('search-input');
+      
+    //   cityChosen.textContent = searchedcity
 
-    console.log(searchedCity);
-    console.log(citySearch.val());
-
-    // var formEl = $("#search-form");
-    // var citySearch = $("#search-input");
-
+    //   localStorage.setItem('city', $('#search-input').val());
+    // }
 
     // The 5-Day forecast columns
     // -------------------------------------------------------------------------------
@@ -132,6 +133,10 @@ function handleFormSubmit(event) {
       $(forecastOneEl).append("<p>" + "Humidity: " + response.list[5].main.humidity + "%" + "</p>");
       // //log the JSON time stamp to check the correct weather data is being called
       // console.log(response.list[1].dt_txt);
+
+
+    
+
 
       //second day forecast
       // -----------------
@@ -194,6 +199,9 @@ function handleFormSubmit(event) {
       // //log the JSON time stamp to check the correct weather data is being called
       // console.log(response.list[33].dt_txt);
       // console.log(response.list[33].weather[0].icon);
+
+
+
 
       // Add relevant weather icons to five day forecast columns
       // -------------------------------------------------------
@@ -334,6 +342,17 @@ function handleFormSubmit(event) {
     historyButtonFive.html("<p>" + (citySearch.val()) + "</p>");
     historyButtonSix.html("<p>" + (citySearch.val()) + "</p>");
 
+  //   // Local storage - Current Weather
+  // ---------------------------------------
+  //   var todayElTemp = document.querySelector("#today");
+    localStorage.setItem('today',todayElTemp.innerHTML);
+  // var grabber = localStorage.getItem('today')
+  //   // console.log(todayElTemp);
+  //   todayElTemp.innerHTML = grabber
+
+  //   // Local storage - Five Day Forecast
+  // ---------------------------------------
+
     //Stops the prepends from 'stacking up' when the search button is clicked multiple times
     $(this).off(event);
 
@@ -345,10 +364,18 @@ function handleFormSubmit(event) {
 //Submit form & invoke the handleFormSubmit function
 formEl.on("submit", handleFormSubmit);
 
+  //   // Local storage - Current Weather
+  // ---------------------------------------
+var todayElTemp = document.querySelector("#today");
+var grabber = localStorage.getItem('today')
+// console.log(todayElTemp);
+todayElTemp.innerHTML = grabber
+
+  //   // Local storage - Five Day Forecast
+  // ---------------------------------------
 
 
-
-
+  // Need to stop the searches from stacking up
 
 
 //Add event listeners for the buttons
