@@ -65,11 +65,12 @@
 
       <div class="col-lg-9 pb-3" id="weatherData">
         <section id="today" class="mt-3" role="region" aria-live="polite"></section>
+        <!-- id #todayCityDate is inserted here using JQuery .attr method-->
         <section id="forecast" class="mt-3" role="region" aria-live="polite">
           <h4><strong>5-Day Forecast:</strong></h4>
         </section>
-        <div class="container">
-          <div class="row five-day-forecast-row">
+        <div id="five-day-forecast" class="container">
+          <div id="five-day-forecast-row" class="row five-day-forecast-row">
             <div class="col five-day-forecast-col" id="five-day-one"></div>
             <div class="col five-day-forecast-col" id="five-day-two"></div>
             <div class="col five-day-forecast-col" id="five-day-three"></div>
@@ -77,6 +78,10 @@
             <div class="col five-day-forecast-col" id="five-day-five"></div>
           </div>
         </div>
+        <!-- id #five-day-forecast-storage created to pass the innerHTML from local storage. id #five-day-forecast not working in this regard-->
+        <section id="five-day-forecast-storage" class="container">
+          <div></div>
+        </section> 
       </div>
     </div>
   </div>
