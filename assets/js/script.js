@@ -71,7 +71,7 @@ function handleFormSubmit(event) {
     var cityTitleEl = $("<h2>" + "<strong>" + (citySearch.val()) + " " + "(" + todaysDate.format("D/MM/YYYY") + ") " + "</strong>" + "</h2>");
     cityTitleEl.attr('id', 'todayCityDate');
     cityTitleEl.attr('style', 'margin-top:-15px; margin-bottom:0;');
-    
+
     //Prepend city title element to <h2> tag in id #today, before today's date
     $(todayEl).prepend(cityTitleEl) + "(" + todaysDate.format("D/MM/YYYY") + ")";
 
@@ -83,7 +83,11 @@ function handleFormSubmit(event) {
     todaysWeatherIcon.attr("style", "display:inline; height:5rem;");
     todaysWeatherIcon.appendTo('#todayCityDate');
 
-    
+    //   // Local storage - Current Weather
+    // ---------------------------------------
+    localStorage.setItem('todayWeather', todayWeatherEl.innerHTML);
+
+
     // // Local storage for the search city
     // var cityChosen = document.querySelector('#search-input');
 
@@ -91,7 +95,7 @@ function handleFormSubmit(event) {
 
     // function renderLastRegistered() {
     //   var searchedCity = localStorage.getItem('search-input');
-      
+
     //   cityChosen.textContent = searchedcity
 
     //   localStorage.setItem('city', $('#search-input').val());
@@ -135,7 +139,7 @@ function handleFormSubmit(event) {
       // console.log(response.list[1].dt_txt);
 
 
-    
+
 
 
       //second day forecast
@@ -320,7 +324,12 @@ function handleFormSubmit(event) {
       //Take the current date & add 5 days, then insert before the weather icon for the fifth day of five days of forecasts
       $("<h5>" + moment().add(5, "day").format("D/MM/YYYY") + "</h5>").insertBefore(weatherIconFive);
       $("#five-day-five").attr("style", "padding-top:0.5rem;");
+
+      // Local storage - Five Day Forecast
+      // ---------------------------------------
+      localStorage.setItem('forecast', fiveDayEl.innerHTML);
     });
+
 
     // Dealing with the button storage
     // -------------------------------------
@@ -333,25 +342,82 @@ function handleFormSubmit(event) {
     var historyButtonFour = $("#historyButton-4");
     var historyButtonFive = $("#historyButton-5");
     var historyButtonSix = $("#historyButton-6");
-
+  
+  
     //Inserts the searched city into each button
+    
+    // if (localStorage.getItem("ButtonOne") == "")
+    // historyButtonOne.html("<p>" + (citySearch.val()) + "</p>");
+    // else localStorage.setItem('ButtonTwo', (citySearch.val()));  
     historyButtonOne.html("<p>" + (citySearch.val()) + "</p>");
+    localStorage.setItem('ButtonOne', (citySearch.val()));
     historyButtonTwo.html("<p>" + (citySearch.val()) + "</p>");
+    localStorage.setItem('ButtonTwo', (citySearch.val()));
     historyButtonThree.html("<p>" + (citySearch.val()) + "</p>");
+    localStorage.setItem('ButtonThree', (citySearch.val()));
     historyButtonFour.html("<p>" + (citySearch.val()) + "</p>");
+    localStorage.setItem('ButtonFour', (citySearch.val()));
     historyButtonFive.html("<p>" + (citySearch.val()) + "</p>");
+    localStorage.setItem('ButtonFive', (citySearch.val()));
     historyButtonSix.html("<p>" + (citySearch.val()) + "</p>");
+    localStorage.setItem('ButtonSix', (citySearch.val()));
 
-  //   // Local storage - Current Weather
-  // ---------------------------------------
-  //   var todayElTemp = document.querySelector("#today");
-    localStorage.setItem('today',todayElTemp.innerHTML);
-  // var grabber = localStorage.getItem('today')
-  //   // console.log(todayElTemp);
-  //   todayElTemp.innerHTML = grabber
+// var searchHistory = [citySearch.val()]
+// localStorage.setItem( )
+// console.log(searchHistory);
 
-  //   // Local storage - Five Day Forecast
-  // ---------------------------------------
+
+// // Search History Function
+// // -----------------------
+//     //Enter first city search
+//     citySearch.val()
+  
+//     //Add first city search to local storage 'ButtonOne'
+//     buttonEl = ["ButtonOne", "ButtonTwo", "ButtonThree", "ButtonFour", "ButtonFive", "ButtonSix"];
+//     // localStorage.setItem(buttonEl[i], (citySearch.val()));
+//     console.log(buttonEl[i]);
+    
+//     i = 
+
+//     //Recall 'ButtonOne' from local storage and asign to #historyButton-1
+//     var buttonOneLocalStorage = localStorage.getItem('ButtonOne');
+//     var buttonOneQuery = document.querySelector('#historyButton-1');
+//     buttonOneQuery.innerHTML = buttonOneLocalStorage
+    //Enter second city search
+
+    //Add second city search to local storage 'ButtonTwo'
+
+    //Recall 'ButtonTwo' from local storage and asign to #historyButton-2   
+
+    //Enter third city search
+
+    //Add third city search to local storage 'ButtonThree'
+
+    //Recall 'ButtonThree' from local storage and asign to #historyButton-3
+    
+    //Enter fourth city search
+
+    //Add fourth city search to local storage 'ButtonFour'
+
+    //Recall 'ButtonFour' from local storage and asign to #historyButton-4
+
+    //Enter fifth city search
+
+    //Add fifth city search to local storage 'ButtonFive'
+
+    //Recall 'ButtonFive' from local storage and asign to #historyButton-5   
+
+    //Enter six city search
+
+    //Add sixth city search to local storage 'ButtonSix'
+
+    //Recall 'ButtonSix' from local storage and asign to #historyButton-6
+    
+
+
+    // Create an array with an index length of 5 that
+    // Array fills up and then it's a one-in one-out procedure
+
 
     //Stops the prepends from 'stacking up' when the search button is clicked multiple times
     $(this).off(event);
@@ -364,16 +430,54 @@ function handleFormSubmit(event) {
 //Submit form & invoke the handleFormSubmit function
 formEl.on("submit", handleFormSubmit);
 
-  //   // Local storage - Current Weather
-  // ---------------------------------------
-var todayElTemp = document.querySelector("#today");
-var grabber = localStorage.getItem('today')
+//   // Local storage - Current Weather
+// ---------------------------------------
+var todayWeatherEl = document.querySelector("#today");
+var grabber = localStorage.getItem('todayWeather');
 // console.log(todayElTemp);
-todayElTemp.innerHTML = grabber
+todayWeatherEl.innerHTML = grabber
+// console.log(todayWeatherEl.innerHTML);
+// console.log(grabber);
+//   // Local storage - Five Day Forecast
+// ---------------------------------------
+// localStorage.setItem('forecast',fiveDayEl.innerHTML);
+var fiveDayEl = document.querySelector("#five-day-forecast, #five-day-forecast-row");
+var grabberTwo = localStorage.getItem('forecast');
+var forecastTwo = document.querySelector("#five-day-forecast-storage");
+// console.log(fiveDayEl.innerHTML);
+// console.log(grabberTwo);
 
-  //   // Local storage - Five Day Forecast
-  // ---------------------------------------
+forecastTwo.innerHTML = grabberTwo
 
+// Local storage recall - Button 1
+var buttonOneLocalStorage = localStorage.getItem('ButtonOne');
+var buttonOneQuery = document.querySelector('#historyButton-1');
+buttonOneQuery.innerHTML = buttonOneLocalStorage
+
+// Local storage recall - Button 2
+var buttonTwoLocalStorage = localStorage.getItem('ButtonTwo');
+var buttonTwoQuery = document.querySelector('#historyButton-2');
+buttonTwoQuery.innerHTML = buttonTwoLocalStorage
+
+// // Local storage recall - Button 3
+// var buttonThreeLocalStorage = localStorage.getItem('ButtonThree');
+// var buttonThreeQuery = document.querySelector('#historyButton-3');
+// buttonThreeQuery.innerHTML = buttonThreeLocalStorage
+
+// // Local storage recall - Button 4
+// var buttonFourLocalStorage = localStorage.getItem('ButtonFour');
+// var buttonFourQuery = document.querySelector('#historyButton-4');
+// buttonFourQuery.innerHTML = buttonFourLocalStorage
+
+// // Local storage recall - Button 5
+// var buttonFiveLocalStorage = localStorage.getItem('ButtonFive');
+// var buttonFiveQuery = document.querySelector('#historyButton-5');
+// buttonFiveQuery.innerHTML = buttonFiveLocalStorage
+
+// // Local storage recall - Button 6
+// var buttonSixLocalStorage = localStorage.getItem('ButtonSix');
+// var buttonSixQuery = document.querySelector('#historyButton-6');
+// buttonSixQuery.innerHTML = buttonSixLocalStorage
 
   // Need to stop the searches from stacking up
 
