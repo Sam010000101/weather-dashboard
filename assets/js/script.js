@@ -8,7 +8,7 @@ var citySearch = $("#search-input");
 function handleFormSubmit(event) {
 
   //Stops the appends & prepends from 'stacking up' in the current weather forecast
-  $( "#today" ).empty();
+  $("#today").empty();
 
   //Prevents the default behavior
   event.preventDefault();
@@ -91,29 +91,14 @@ function handleFormSubmit(event) {
     // ---------------------------------------
     localStorage.setItem('todayWeather', todayWeatherEl.innerHTML);
 
-
-    // // Local storage for the search city
-    // var cityChosen = document.querySelector('#search-input');
-
-    // renderLastRegistered();
-
-    // function renderLastRegistered() {
-    //   var searchedCity = localStorage.getItem('search-input');
-
-    //   cityChosen.textContent = searchedcity
-
-    //   localStorage.setItem('city', $('#search-input').val());
-    // }
-
     // The 5-Day forecast columns
     // -------------------------------------------------------------------------------
-      //Stops the appends & prepends from 'stacking up' in the five-day weather forecast
-      $( "#five-day-one" ).empty();
-      $( "#five-day-two" ).empty();
-      $( "#five-day-three" ).empty();
-      $( "#five-day-four" ).empty();
-      $( "#five-day-five" ).empty();
-      // THIS HAS STOPPED THE CITY HISTORY FROM BEING ALLOCATED TO EACH BUTTON IN TURN, EXCEPT FOR WHEN YOU SAVE THE SCRIPT.JS AND ALL LOCAL STORAGE VALUES ARE THEN 'GRABBED' & ASSIGNED TO THE BUTTONS
+    //Stops the appends & prepends from 'stacking up' in the five-day weather forecast
+    $("#five-day-one").empty();
+    $("#five-day-two").empty();
+    $("#five-day-three").empty();
+    $("#five-day-four").empty();
+    $("#five-day-five").empty();
 
     //Variables that target the id's for five day forecast columns
     var forecastOneEl = $("#five-day-one");
@@ -201,7 +186,6 @@ function handleFormSubmit(event) {
       //fifth day forecast
       // -----------------
 
-
       //Convert Kelvin to degrees c
       var tempConversionDayFive = (response.list[37].main.temp - 273.15).toFixed(2);
 
@@ -214,8 +198,6 @@ function handleFormSubmit(event) {
       // //log the JSON time stamp to check the correct weather data is being called
       // console.log(response.list[33].dt_txt);
       // console.log(response.list[33].weather[0].icon);
-
-
 
 
       // Add relevant weather icons to five day forecast columns
@@ -352,62 +334,37 @@ function handleFormSubmit(event) {
     var historyButtonFour = $("#historyButton-4");
     var historyButtonFive = $("#historyButton-5");
     var historyButtonSix = $("#historyButton-6");
-  
-  
+
     //Insert each searched city into each button in turn
     var searchHistory = [citySearch.val()]
-    
-    historyButtonOne.html("<p>" + (searchHistory) + "</p>");
-    if (localStorage.getItem('ButtonOne') === null ) {
+
+    if (localStorage.getItem('ButtonOne') === null) {
       localStorage.setItem('ButtonOne', (searchHistory));
-    } else if ((localStorage.getItem('ButtonTwo') === null ) ){
+      historyButtonOne.html("<p>" + (searchHistory) + "</p>");
+    } else if ((localStorage.getItem('ButtonTwo') === null)) {
       localStorage.setItem('ButtonTwo', (searchHistory))
-    } else if ((localStorage.getItem('ButtonThree') === null )){
+      historyButtonTwo.html("<p>" + (searchHistory) + "</p>");
+    } else if ((localStorage.getItem('ButtonThree') === null)) {
       localStorage.setItem('ButtonThree', (searchHistory));
-    } else if ((localStorage.getItem('ButtonFour') === null )){
+      historyButtonThree.html("<p>" + (searchHistory) + "</p>");
+    } else if ((localStorage.getItem('ButtonFour') === null)) {
       localStorage.setItem('ButtonFour', (searchHistory));
-    }  else if ((localStorage.getItem('ButtonFive') === null )){
-        localStorage.setItem('ButtonFive', (searchHistory));
-    } else if ((localStorage.getItem('ButtonSix') === null )){
+      historyButtonFour.html("<p>" + (searchHistory) + "</p>");
+    } else if ((localStorage.getItem('ButtonFive') === null)) {
+      localStorage.setItem('ButtonFive', (searchHistory));
+      historyButtonFive.html("<p>" + (searchHistory) + "</p>");
+    } else if ((localStorage.getItem('ButtonSix') === null)) {
       localStorage.setItem('ButtonSix', (searchHistory));
+      historyButtonSix.html("<p>" + (searchHistory) + "</p>");
     }
-  
 
-    //Enter second city search
-
-    //Add second city search to local storage 'ButtonTwo'
-
-    //Recall 'ButtonTwo' from local storage and asign to #historyButton-2   
-
-    //Enter third city search
-
-    //Add third city search to local storage 'ButtonThree'
-
-    //Recall 'ButtonThree' from local storage and asign to #historyButton-3
-    
-    //Enter fourth city search
-
-    //Add fourth city search to local storage 'ButtonFour'
-
-    //Recall 'ButtonFour' from local storage and asign to #historyButton-4
-
-    //Enter fifth city search
-
-    //Add fifth city search to local storage 'ButtonFive'
-
-    //Recall 'ButtonFive' from local storage and asign to #historyButton-5   
-
-    //Enter six city search
-
-    //Add sixth city search to local storage 'ButtonSix'
-
-    //Recall 'ButtonSix' from local storage and asign to #historyButton-6
-    
-
-
-    // Create an array with an index length of 5 that
-    // Array fills up and then it's a one-in one-out procedure
-
+    // TO DO
+    // -------------
+    // FIGURE OUT A WAY TO ADD THE LATEST CITY SEARCH TO THE FIRST BUTTON, AND REALLOCATE IN TURN THE BUTTONS I.E. REPLACE THE HISTORY BUTTONS WIT THE LATEST SEARCHES
+    // -------------
+    // FIGURE OUT A WAY TO MAKE EACH BUTTON 'CLICK' THROUGH TO IT'S RESPECTIVE CITY TO CALL THE DATA TO THE PAGE (REPLACING THE EXISTING DATA) //Add event listeners for the buttons?
+    // -------------
+    // IF THERE'S TIME FIGURE OUT A WAY TO PREVENT DUPLICATE CITIES FROM BEING ADDED TO THE HISTORY BUTTONS
 
     // //Stops the prepends from 'stacking up' when the search button is clicked multiple times
     // $(this).off(event);
@@ -469,10 +426,6 @@ var buttonSixLocalStorage = localStorage.getItem('ButtonSix');
 var buttonSixQuery = document.querySelector('#historyButton-6');
 buttonSixQuery.innerHTML = buttonSixLocalStorage
 
-  // Need to stop the searches from stacking up
-
-
-//Add event listeners for the buttons
 
 
 
