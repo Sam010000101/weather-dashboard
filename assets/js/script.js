@@ -6,6 +6,10 @@ var citySearch = $("#search-input");
 
 //Function that submits the city search & returns all chosen forecast data for said city
 function handleFormSubmit(event) {
+
+  //Stops the appends & prepends from 'stacking up' in the current weather forecast
+  $( "#today" ).empty();
+
   //Prevents the default behavior
   event.preventDefault();
   // console.log(event);
@@ -103,6 +107,13 @@ function handleFormSubmit(event) {
 
     // The 5-Day forecast columns
     // -------------------------------------------------------------------------------
+      //Stops the appends & prepends from 'stacking up' in the five-day weather forecast
+      $( "#five-day-one" ).empty();
+      $( "#five-day-two" ).empty();
+      $( "#five-day-three" ).empty();
+      $( "#five-day-four" ).empty();
+      $( "#five-day-five" ).empty();
+      // THIS HAS STOPPED THE CITY HISTORY FROM BEING ALLOCATED TO EACH BUTTON IN TURN, EXCEPT FOR WHEN YOU SAVE THE SCRIPT.JS AND ALL LOCAL STORAGE VALUES ARE THEN 'GRABBED' & ASSIGNED TO THE BUTTONS
 
     //Variables that target the id's for five day forecast columns
     var forecastOneEl = $("#five-day-one");
@@ -360,7 +371,7 @@ function handleFormSubmit(event) {
     } else if ((localStorage.getItem('ButtonSix') === null )){
       localStorage.setItem('ButtonSix', (searchHistory));
     }
-
+  
 
     //Enter second city search
 
@@ -398,8 +409,8 @@ function handleFormSubmit(event) {
     // Array fills up and then it's a one-in one-out procedure
 
 
-    //Stops the prepends from 'stacking up' when the search button is clicked multiple times
-    $(this).off(event);
+    // //Stops the prepends from 'stacking up' when the search button is clicked multiple times
+    // $(this).off(event);
 
     //Clears the input field
     $('input[type="text"]').val("");
