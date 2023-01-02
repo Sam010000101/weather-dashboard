@@ -331,10 +331,9 @@ function handleFormSubmit(event) {
     });
 
 
-    // Dealing with the button storage
+    // Dealing with search history via local storage & assigning to buttons
     // -------------------------------------
 
-    //Replace default button text with searched city
     //Variables that target the history buttons
     var historyButtonOne = $("#historyButton-1");
     var historyButtonTwo = $("#historyButton-2");
@@ -344,45 +343,25 @@ function handleFormSubmit(event) {
     var historyButtonSix = $("#historyButton-6");
   
   
-    //Inserts the searched city into each button
+    //Insert each searched city into each button in turn
+    var searchHistory = [citySearch.val()]
     
-    // if (localStorage.getItem("ButtonOne") == "")
-    // historyButtonOne.html("<p>" + (citySearch.val()) + "</p>");
-    // else localStorage.setItem('ButtonTwo', (citySearch.val()));  
-    historyButtonOne.html("<p>" + (citySearch.val()) + "</p>");
-    localStorage.setItem('ButtonOne', (citySearch.val()));
-    historyButtonTwo.html("<p>" + (citySearch.val()) + "</p>");
-    localStorage.setItem('ButtonTwo', (citySearch.val()));
-    historyButtonThree.html("<p>" + (citySearch.val()) + "</p>");
-    localStorage.setItem('ButtonThree', (citySearch.val()));
-    historyButtonFour.html("<p>" + (citySearch.val()) + "</p>");
-    localStorage.setItem('ButtonFour', (citySearch.val()));
-    historyButtonFive.html("<p>" + (citySearch.val()) + "</p>");
-    localStorage.setItem('ButtonFive', (citySearch.val()));
-    historyButtonSix.html("<p>" + (citySearch.val()) + "</p>");
-    localStorage.setItem('ButtonSix', (citySearch.val()));
-
-// var searchHistory = [citySearch.val()]
-// localStorage.setItem( )
-// console.log(searchHistory);
+    historyButtonOne.html("<p>" + (searchHistory) + "</p>");
+    if (localStorage.getItem('ButtonOne') === null ) {
+      localStorage.setItem('ButtonOne', (searchHistory));
+    } else if ((localStorage.getItem('ButtonTwo') === null ) ){
+      localStorage.setItem('ButtonTwo', (searchHistory))
+    } else if ((localStorage.getItem('ButtonThree') === null )){
+      localStorage.setItem('ButtonThree', (searchHistory));
+    } else if ((localStorage.getItem('ButtonFour') === null )){
+      localStorage.setItem('ButtonFour', (searchHistory));
+    }  else if ((localStorage.getItem('ButtonFive') === null )){
+        localStorage.setItem('ButtonFive', (searchHistory));
+    } else if ((localStorage.getItem('ButtonSix') === null )){
+      localStorage.setItem('ButtonSix', (searchHistory));
+    }
 
 
-// // Search History Function
-// // -----------------------
-//     //Enter first city search
-//     citySearch.val()
-  
-//     //Add first city search to local storage 'ButtonOne'
-//     buttonEl = ["ButtonOne", "ButtonTwo", "ButtonThree", "ButtonFour", "ButtonFive", "ButtonSix"];
-//     // localStorage.setItem(buttonEl[i], (citySearch.val()));
-//     console.log(buttonEl[i]);
-    
-//     i = 
-
-//     //Recall 'ButtonOne' from local storage and asign to #historyButton-1
-//     var buttonOneLocalStorage = localStorage.getItem('ButtonOne');
-//     var buttonOneQuery = document.querySelector('#historyButton-1');
-//     buttonOneQuery.innerHTML = buttonOneLocalStorage
     //Enter second city search
 
     //Add second city search to local storage 'ButtonTwo'
@@ -459,25 +438,25 @@ var buttonTwoLocalStorage = localStorage.getItem('ButtonTwo');
 var buttonTwoQuery = document.querySelector('#historyButton-2');
 buttonTwoQuery.innerHTML = buttonTwoLocalStorage
 
-// // Local storage recall - Button 3
-// var buttonThreeLocalStorage = localStorage.getItem('ButtonThree');
-// var buttonThreeQuery = document.querySelector('#historyButton-3');
-// buttonThreeQuery.innerHTML = buttonThreeLocalStorage
+// Local storage recall - Button 3
+var buttonThreeLocalStorage = localStorage.getItem('ButtonThree');
+var buttonThreeQuery = document.querySelector('#historyButton-3');
+buttonThreeQuery.innerHTML = buttonThreeLocalStorage
 
-// // Local storage recall - Button 4
-// var buttonFourLocalStorage = localStorage.getItem('ButtonFour');
-// var buttonFourQuery = document.querySelector('#historyButton-4');
-// buttonFourQuery.innerHTML = buttonFourLocalStorage
+// Local storage recall - Button 4
+var buttonFourLocalStorage = localStorage.getItem('ButtonFour');
+var buttonFourQuery = document.querySelector('#historyButton-4');
+buttonFourQuery.innerHTML = buttonFourLocalStorage
 
-// // Local storage recall - Button 5
-// var buttonFiveLocalStorage = localStorage.getItem('ButtonFive');
-// var buttonFiveQuery = document.querySelector('#historyButton-5');
-// buttonFiveQuery.innerHTML = buttonFiveLocalStorage
+// Local storage recall - Button 5
+var buttonFiveLocalStorage = localStorage.getItem('ButtonFive');
+var buttonFiveQuery = document.querySelector('#historyButton-5');
+buttonFiveQuery.innerHTML = buttonFiveLocalStorage
 
-// // Local storage recall - Button 6
-// var buttonSixLocalStorage = localStorage.getItem('ButtonSix');
-// var buttonSixQuery = document.querySelector('#historyButton-6');
-// buttonSixQuery.innerHTML = buttonSixLocalStorage
+// Local storage recall - Button 6
+var buttonSixLocalStorage = localStorage.getItem('ButtonSix');
+var buttonSixQuery = document.querySelector('#historyButton-6');
+buttonSixQuery.innerHTML = buttonSixLocalStorage
 
   // Need to stop the searches from stacking up
 
